@@ -1,0 +1,23 @@
+<h1>List of News with #{{tag}}</h1>
+<table>
+    <tr>
+        <td>
+            <button type="button" [routerLink]="['/']">Back</button>
+        </td>
+        <td>
+            <button type="button" [routerLink]="['/post']">Post News</button>
+        </td>
+    </tr>
+</table>
+
+<div *ngFor="let n of news">
+    <h4>{{n.title}}</h4>
+    <h4>Publish date: {{n.postDate}}</h4>
+    <img [src]="n.photo">
+    <p>{{n.description}}</p>
+    <ul *ngFor="let t of n.tags">
+        <li>{{t}}</li>
+    </ul>
+</div>
+
+

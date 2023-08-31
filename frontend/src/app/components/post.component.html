@@ -1,0 +1,52 @@
+<h1>Share a News</h1>
+<form [formGroup]="postForm" (submit)="process()">
+    <tr>
+        <td>Title:</td>
+        <td>
+            <input type="text" formControlName="title">
+        </td>
+    </tr>
+    <tr>
+        <td>Photo:</td>
+        <td>
+            <input type="file" accept="image/*" #photo>
+        </td>
+    </tr>
+    <tr>
+        <td>Description:</td>
+        <td>
+            <textarea formControlName="description" cols="30" rows="10"></textarea>
+        </td>
+    </tr>
+    <form [formGroup]="tagForm" (submit)="addTags()">
+        <tr>
+            <td>Tags:</td>
+            <td>
+                <input type="text" formControlName="tags">
+            </td>
+            <td>
+              <button type="submit">+</button>
+            </td>
+        </tr>
+        <tr *ngIf="tags.length > 0">
+            <td>
+                <ul *ngFor="let t of tags">
+                    <li>
+                        {{ t }}
+                        <button (click)="removeTag(t)">X</button>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    </form>  
+    <tr>
+        <td>
+            <button type="submit" [disabled]="postForm.invalid">Post News</button>
+        </td>
+        <td>
+            <button type="button" [routerLink]="['/']">Back</button>
+        </td>
+    </tr>
+</form>
+
+

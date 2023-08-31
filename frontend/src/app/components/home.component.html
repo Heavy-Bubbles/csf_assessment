@@ -1,0 +1,31 @@
+<table>
+    <tr>
+        <td>Time</td>
+        <td>
+            <select #duration (change)="selectDuration(duration.value)">
+                <option value=5>5 mins</option>
+                <option value=15>15 mins</option>
+                <option value=30>30 mins</option>
+                <option value=45>45 mins</option>
+                <option value="60">60 mins</option>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <button type="button" [routerLink]="['post']">
+            Post News
+        </button>
+    </tr>
+</table>
+<div *ngIf="tags.length > 0">
+    <h2>Top Tags</h2>
+    <ul *ngFor="let t of tags">
+        <li>
+            <a [routerLink]="['/news', t.tag]">{{t.tag}}</a> ({{t.count}})
+        </li>
+    </ul>
+</div>
+<div *ngIf="tags.length <= 0">
+    <h2>No new hastags found within the last {{duration.value}} minutes</h2>
+</div>
